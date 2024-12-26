@@ -1,0 +1,28 @@
+git remote add origin https://github.com/roblox928/Lemne-gui.git
+git branch -M main
+git push -u origin main-- Este es un script local que se ejecuta en el cliente
+
+-- Obtener el jugador
+local player = game.Players.LocalPlayer
+
+-- Asegurarse de que el jugador tenga un personaje
+player.CharacterAdded:Wait()
+local character = player.Character or player.CharacterAdded:Wait()
+
+-- Obtener el Humanoid del personaje
+local humanoid = character:WaitForChild("Humanoid")
+
+-- Función para saltar
+local function jump()
+    if humanoid then
+        humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+    end
+end
+
+-- Detectar cuando la tecla "J" es presionada
+local userInputService = game:GetService("UserInputService")
+userInputService.InputBegan:Connect(function(input, gameProcessed)
+    if input.KeyCode == Enum.KeyCode.J and not gameProcessed then
+        jump()
+    end
+end)game.Players.LocalPlayerinput.KeyCode
